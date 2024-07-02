@@ -21,4 +21,11 @@ public class EmployeeController {
         EmployeeDto employeeDto = emp.addEmployee(dto);
         return new ResponseEntity<>(employeeDto, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/deleteEmployee")
+    public ResponseEntity<String> deleteEmployee(@RequestParam long employeeId){
+        emp.deleteEmployee(employeeId);
+        return new ResponseEntity<>("Employee record deleted successfully !" , HttpStatus.OK);
+
+    }
 }
