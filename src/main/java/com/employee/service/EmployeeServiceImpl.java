@@ -16,11 +16,19 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 
     @Override
-    public void addEmployee(EmployeeDto dto) {
+    public EmployeeDto addEmployee(EmployeeDto dto) {
         EmployeeEntity entity = new EmployeeEntity();
+
         entity.setName(dto.getName());
         entity.setEmailId(dto.getEmailId());
-        employeeRepository.save(entity);
+        //save to entity
+        EmployeeEntity savedEmployee = employeeRepository.save(entity);
+
+        EmployeeDto edto = new EmployeeDto();
+        edto.setId(savedEmployee.getId());
+        edto.setName(savedEmployee.getName());
+        edto.setEmailId(savedEmployee.getEmailId());
+        return edto;
 
     }
 }

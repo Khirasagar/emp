@@ -2,6 +2,8 @@ package com.employee.controller;
 
 import com.employee.dto.EmployeeDto;
 import com.employee.service.EmployeeServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,8 +17,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public String addEmployee(@RequestBody EmployeeDto dto){
-        emp.addEmployee(dto);
-        return "done";
+    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto dto){
+        EmployeeDto employeeDto = emp.addEmployee(dto);
+        return new ResponseEntity<>(employeeDto, HttpStatus.CREATED);
     }
 }
